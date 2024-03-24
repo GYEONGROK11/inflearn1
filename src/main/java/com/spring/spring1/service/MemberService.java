@@ -18,7 +18,7 @@ public class MemberService {
         this.memberRepository = memberRepository;
     }
 
-    //회원가입 2
+    //회원가입
     public Long join(Member member) {
         validateDuplicateMember(member); //중복이름x
         //저장
