@@ -13,13 +13,20 @@ import javax.sql.DataSource;
 @Configuration
 public class SpringConfig {
 
-    //private DataSource dataSource;
+    private final MemberRepository memberRepository;
+
+    @Autowired
+    public SpringConfig(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
+
+    /*private DataSource dataSource;
     private EntityManager em;
 
     @Autowired
     public SpringConfig(EntityManager em) {
         this.em = em;
-    }
+    }*/
 
     /*@Autowired
     public SpringConfig(DataSource dataSource) {
@@ -29,14 +36,15 @@ public class SpringConfig {
 
     @Bean
     public MemberService memberService(){
-        return new MemberService(memberRepository());
+        //return new MemberService(memberRepository());
+        return new MemberService(memberRepository);
     }
 
-    @Bean
+    /*@Bean
     public MemberRepository memberRepository(){
         //return new MemoryMemberRepository();   //레포지토리 조립 나머지 코드는 그대로
         //return new JdbcMemberRepository(dataSource);
         //return new JdbcTemplateMemberRepository(dataSource);
         return new JpaMemberRepository(em);
-    }
+    }*/
 }
