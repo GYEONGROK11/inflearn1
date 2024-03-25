@@ -29,7 +29,7 @@ public class SpringConfig {
 
     @Bean
     public MemberRepository memberRepository(){
-        //return new MemoryMemberRepository();
+        //return new MemoryMemberRepository();   //레포지토리 조립 나머지 코드는 그대로
         return new JdbcMemberRepository(dataSource);
     }
 }

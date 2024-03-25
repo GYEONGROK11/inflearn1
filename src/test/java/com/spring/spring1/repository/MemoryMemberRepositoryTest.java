@@ -36,15 +36,15 @@ public class MemoryMemberRepositoryTest {
     @Test
     public void findByName(){
         Member member1 = new Member();
-        member1.setName("spring1");
+        member1.setName("spring");
         repository.save(member1);
 
         Member member2 = new Member();
-        member2.setName("spring2");
+        member2.setName("JPA");
         repository.save(member2);
 
-        Member result1 = repository.findByName("spring1").get();
-        Member result2 = repository.findByName("spring2").get();
+        Member result1 = repository.findByName("spring").get();
+        Member result2 = repository.findByName("JPA").get();
 
         assertThat(result1).isEqualTo(member1);
         assertThat(result2).isEqualTo(member2);
@@ -55,11 +55,11 @@ public class MemoryMemberRepositoryTest {
     @Test
     public void findAll(){
         Member member1 = new Member();
-        member1.setName("spring1");
+        member1.setName("spring");
         repository.save(member1);
 
         Member member2 = new Member();
-        member2.setName("spring2");
+        member2.setName("JPA");
         repository.save(member2);
 
         List<Member> result = repository.findAll();
