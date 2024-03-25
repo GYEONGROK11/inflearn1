@@ -21,12 +21,14 @@ public class JdbcMemberRepository implements MemberRepository {
         String sql = "insert into member(name) values(?)";
         Connection conn = null;
         PreparedStatement pstmt = null;
-        ResultSet rs = null;
+        ResultSet rs = null;  //결과를 받음
         try {
-            conn = getConnection();
-            pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            conn = getConnection();  //커넥션 가져오기
+            pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS); //인서트할때 프라이머리키 가져오기
+
             pstmt.setString(1, member.getName());
-            pstmt.executeUpdate();
+
+            pstmt.executeUpdate();  //쿼리가 지금 날아감
             rs = pstmt.getGeneratedKeys();
             if (rs.next()) {
                 member.setId(rs.getLong(1));
@@ -51,7 +53,9 @@ public class JdbcMemberRepository implements MemberRepository {
             conn = getConnection();
             pstmt = conn.prepareStatement(sql);
             pstmt.setLong(1, id);
-            rs = pstmt.executeQuery();
+
+            rs = pstmt.executeQuery(); //db에 조회 날림
+
             if (rs.next()) {
                 Member member = new Member();
                 member.setId(rs.getLong("id"));
@@ -82,7 +86,7 @@ public class JdbcMemberRepository implements MemberRepository {
                 Member member = new Member();
                 member.setId(rs.getLong("id"));
                 member.setName(rs.getString("name"));
-                members.add(member);
+                members.add(member); //all이라 리스트에 하나씩 add
             }
             return members;
         } catch (Exception e) {
