@@ -6,7 +6,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Component;
 
 @Aspect
-@Component  //springconfig에서 빈등록하거나 여기서 빈등록
+@Component  //springconfig에서 빈등록하거나 여기서 빈등록.
 public class TimeTraceAop {
 
     @Around("execution(* com.spring.spring1..*(..))")
